@@ -75,6 +75,9 @@ Calibration, uncertainty, and stability matter more than marginal R² gains.
 **Decision-oriented outputs**  
 Every study case produces artifacts that could realistically support engineering decisions.
 
+> Model outputs where evaluated in the context of real engineering constraints and specifications,
+prioritizing robustness and risk-aware decisions over metric optimization.
+
 ---
 
 ## Audience
