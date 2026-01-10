@@ -5,24 +5,39 @@
 
 ## Purpose of This Document
 
-This document captures the **internal rationale** behind the portfolio.
+This document captures the internal analytical rationale behind the portfolio.
 
-It is not intended as a quick overview or marketing material.  
+It is not intended as a public overview or marketing material.
 Its purpose is to document:
 
 - analytical intent
 - design decisions
 - trade-offs
-- boundaries
-- criteria used to move from one study case to the next
+- constraints
+- exit criteria
 
 In short: **how and why decisions were made**, not just what was built.
 
 ---
 
+## Industrial Motivation
+
+This work originated from a real quality problem in a flat-rolled aluminum operation.
+
+Despite operating within AA specification limits, the organization experienced recurring quality issues and customer claims related to mechanical performance variability (materials perceived as too hard, too soft, or unstable in downstream forming).
+
+Root cause analysis revealed a structural gap:
+- no internal chemistry standards,
+- no internal mechanical performance targets,
+- and release decisions driven by compliance rather than design intent.
+
+Physical trial campaigns to define internal standards were economically and operationally constrained. This portfolio explores whether data-driven modeling could serve as a complementary design tool to define conservative, defensible design ranges under uncertainty.
+
+---
+
 ## Central Question of the Portfolio
 
-> *How can industrial data be transformed into analytical models that engineers can trust and actually use for decision-making?*
+> *How can industrial data be transformed into analytical models that engineers can trust and actually use to define design standards and reduce risk?*
 
 This portfolio treats data engineering, analytics, and modeling as a **single system**, not isolated steps.
 
@@ -37,7 +52,7 @@ No modeling work is performed without:
 - stable semantics
 - traceability back to raw data
 
-SQL-based semantic layers are treated as **first-class analytical artifacts**, not just plumbing.
+SQL-based semantic layers are treated as **first-class analytical artifacts**.
 
 ---
 
@@ -48,12 +63,12 @@ The portfolio intentionally starts with:
 - limited feature sets
 - conservative modeling choices
 
-The goal is to understand:
-- what is explainable
-- where uncertainty originates
-- what the natural limits of prediction are
+The objective is to understand:
+- what is explainable,
+- where uncertainty originates,
+- and what the natural limits of prediction are.
 
-Complexity is only introduced when it clearly earns its place.
+Complexity is introduced only when it clearly earns its place.
 
 ---
 
@@ -62,26 +77,31 @@ Complexity is only introduced when it clearly earns its place.
 Point predictions are insufficient for engineering decisions.
 
 Throughout the portfolio:
-- calibration
-- prediction intervals
-- stability across groups
+- calibration,
+- out-of-fold error,
+- and stability across operating regimes
 
-are treated as **core outputs**, not optional add-ons.
+are treated as **core analytical outputs**, not optional add-ons.
 
 ---
 
 ### Engineering value over metric optimization
 
 Model performance is evaluated through:
-- robustness
-- interpretability
-- consistency across operating regimes
+- robustness,
+- interpretability,
+- and consistency under real constraints.
 
-Marginal improvements in aggregate metrics are not prioritized unless they translate into **clear decision value**.
+Marginal metric improvements are not prioritized unless they translate into **meaningful reductions in risk or variability**.
 
-Engineering decisions in this portfolio are grounded in real specification constraints
-(e.g., AA standards and customer requirements), where the objective is not merely to predict properties, but to support robust design decisions such as defining safe process margins, reducing the risk of non-conformance, and balancing process trade-offs. These decisions directly affect scrap rates, rework, and customer claims,
-making robustness and uncertainty more valuable than marginal metric improvements.
+---
+
+## Industrial Outcome
+
+The analytical framework developed in this portfolio was applied to define internal chemistry standards for selected alloy systems.
+
+These standards replaced specification-only release criteria and contributed to a significant reduction in quality claims.  
+More importantly, they enabled a shift toward **process stability–driven improvement**, providing a structured basis for subsequent optimization efforts.
 
 ---
 
@@ -91,158 +111,133 @@ Each study case exists to answer a question raised by the previous one.
 
 ---
 
-### Study Case 1 — Data Foundation
+## Study Case 1 — Reproducible Data Foundation
 
-**Question:**  
-Can analytics be made reproducible and trustworthy?
+### Question  
+**Can industrial analytics be made reproducible, trustworthy, and decision-ready?**
 
-**Key decisions:**
-- Replace spreadsheet-based workflows with SQL-based semantic views
-- Treat data modeling as an analytical task
-- Optimize for downstream consumption, not ingestion convenience
+### Context  
+Initial analytics relied on spreadsheets and ad-hoc data extracts, with:
+- unclear data grain,
+- inconsistent joins,
+- manual wrangling,
+- limited traceability.
 
-**Exit condition:**  
-Analytics can be reproduced without manual wrangling.
+This made downstream modeling fragile and difficult to defend.
 
----
+### Key Decisions
+- Replace spreadsheet workflows with a SQL-based semantic layer.
+- Treat data modeling as an analytical task.
+- Explicitly define heat-level grain.
+- Encode domain assumptions directly in SQL views.
 
-### Study Case 2 — Chemistry-Only Predictive Signal
-
-**Question:**  
-Is there usable predictive signal using chemistry alone?
-
-**Key decisions:**
-- Start with chemistry as the only feature set
-- Focus on calibration and robustness, not peak accuracy
-- Explicitly accept limited explanatory power
-
-**Exit condition:**  
-Chemistry-only models show consistent, calibratable signal.
+### Exit Condition  
+Analytics outputs can be reproduced deterministically from raw data without manual intervention.
 
 ---
 
-### Study Case 3 — Generalization Across Systems
+## Study Case 2 — Chemistry-Only Predictive Signal
 
-**Question:**  
-Does the chemistry-only approach generalize?
+### Question  
+**Does chemistry alone contain usable and calibratable predictive signal for UTS?**
 
-**Key decisions:**
-- Reuse the exact same methodology
-- Avoid introducing new modeling techniques
-- Compare systems, not models
+### Context  
+Before defining internal standards, it was necessary to verify that chemistry provided a meaningful and quantifiable link to mechanical performance.
 
-**Exit condition:**  
-Clear understanding of where chemistry dominates and where it does not.
+### Key Decisions
+- Use chemistry-only features.
+- Select UTS as a representative target.
+- Favor simple, interpretable models (ridge and polynomial).
+- Use group-aware validation and out-of-fold error.
 
----
-
-### Study Case 4 — Variable Influence Screening
-
-**Question:**  
-Which additional variables are actually worth measuring?
-
-**Key decisions:**
-- Avoid building a full multi-variable model prematurely
-- Evaluate variables by marginal predictive gain
-- Prioritize industrial measurability and stability
-
-**Exit condition:**  
-Ranked list of variables by predictive return on investment.
+### Exit Condition  
+Chemistry-only models demonstrate consistent, calibratable predictive signal suitable for conservative interpretation.
 
 ---
 
-### Study Case 5 — Controlled Model Expansion
+## Study Case 3 — Generalization Across Alloy Systems
 
-**Question:**  
-What is the real benefit of adding non-chemical variables?
+### Question  
+**Does the chemistry-only approach generalize across alloy systems?**
 
-**Key decisions:**
-- Separate marginal effects from combined effects
-- Evaluate impact on uncertainty, not just accuracy
-- Maintain interpretability as a requirement
+### Context  
+A single-alloy model is insufficient for defining internal standards.
 
-**Exit condition:**  
-Clear justification (or rejection) of model complexity.
+### Key Decisions
+- Reuse the exact SC2 pipeline.
+- Avoid new modeling techniques.
+- Compare systems, not architectures.
+- Focus on functional behavior, not just metrics.
+
+### Exit Condition  
+Chemistry-only modeling generalizes in principle, while revealing system-dependent functional behavior.
+
+---
+
+## Study Case 4 — Variable Influence Screening
+
+### Question  
+**Which additional variables are worth measuring beyond chemistry?**
+
+### Context  
+Before building a full process-aware model, it was necessary to evaluate whether added complexity would meaningfully reduce uncertainty.
+
+### Key Decisions
+- Restrict to a single alloy system.
+- Freeze the chemistry-only baseline.
+- Incrementally add variables based on process knowledge.
+- Evaluate both average error and tail risk (P95 absolute error).
+
+### Exit Condition  
+Clear identification of variables that do **not** justify additional complexity under conservative evaluation.
 
 ---
 
-### Study Case 6 — Engineering Design Tools
+## Study Case 5 — Uncertainty-Aware Engineering Design Tools
 
-**Question:**  
-How can model outputs be translated into usable engineering tools?
+### Question  
+**How can validated models be translated into tools engineers can actually use?**
 
-**Key decisions:**
-- Prefer 2D decision maps over complex visualizations
-- Use slices instead of full high-dimensional surfaces
-- Optimize for clarity, not novelty
+### Context  
+The goal was never point prediction, but the definition of **conservative chemistry design ranges** to replace specification-only release criteria.
 
-**Exit condition:**  
-Model outputs can support concrete engineering decisions.
+Mathematical model equations are not practical decision interfaces for engineering teams.
+
+### Key Decisions
+- Treat models as constraint generators, not predictors.
+- Layer uncertainty using out-of-fold residuals.
+- Translate models into 2D chemistry design maps.
+- Favor ridge regression for smooth, stable design surfaces.
+- Define robust regions relative to target UTS.
+
+### Exit Condition  
+Model outputs support concrete engineering decisions and were used to define internal chemistry standards, contributing to a measurable reduction in customer claims and enabling process-stability-driven improvement.
 
 ---
+
 ## Assumptions and Scope Boundaries
 
-This portfolio operates under the following assumptions:
-
-- Data represents industrial processes with inherent variability and partial observability
-- Not all relevant physical mechanisms are directly measured
-- Data quality reflects realistic industrial conditions, not curated laboratory datasets
-- Models are intended to support decision-making, not replace engineering judgment
+- Industrial data reflects inherent variability and partial observability.
+- Not all physical mechanisms are measured.
+- Data quality reflects real production conditions.
+- Models support decisions; they do not replace engineering judgment.
 
 ---
 
 ## What This Portfolio Intentionally Avoids
 
 This portfolio does **not** aim to:
-- chase state-of-the-art benchmarks
-- maximize model complexity
-- demonstrate exotic algorithms
-- optimize metrics without interpretability
+- chase state-of-the-art benchmarks,
+- maximize model complexity,
+- demonstrate exotic algorithms,
+- optimize metrics without interpretability.
 
 These choices are deliberate.
 
 ---
 
-## Intended Signal to Reviewers
+## Final Notes
 
-A reviewer should conclude that the author:
+> **Complexity is not a goal. Insight, trust, and decision value are.**
 
-- Thinks in terms of **systems**, not isolated techniques
-- Understands when **not** to add complexity
-- Can bridge **data, modeling, and engineering decision-making**
-- Treats uncertainty and robustness as first-class concerns
-
----
-
-## Relationship to Public README
-
-The public README defines:
-- scope
-- promise
-- narrative
-
-This internal document defines:
-- rationale
-- constraints
-- decision criteria
-
-All study cases are expected to satisfy **both**.
-
----
-
-## Living Document
-
-This document may evolve as:
-- new study cases are added
-- assumptions are challenged
-- data availability changes
-
-However, changes should reflect **refinement**, not shifts in philosophy.
-
----
-
-## Final Note
-
-> Complexity is not a goal.  
-> Insight, trust, and decision value are.
-
+> This portfolio is designed to demonstrate system-level thinking, disciplined model design, and the ability to translate uncertainty-aware analytics into real engineering decisions.
