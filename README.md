@@ -14,6 +14,24 @@ All study cases originate from a real manufacturing problem and are organized as
 
 ---
 
+## Key Outcome
+
+The final outcome of this work is a set of **uncertainty-aware chemistry design maps**
+that allow engineers to:
+
+- infer feasible chemical compositions from a target UTS,
+- identify robust regions that satisfy mechanical requirements under uncertainty,
+- and make conservative release or design decisions without physical trial campaigns.
+
+These tools were used in practice to define internal chemistry standards,
+resulting in a measurable reduction in external quality claims.
+
+![Conservative chemistry design map — AA3105](assets/sc5_design_map.png)
+
+*Example of a conservative chemistry design map (lower bound, 90% coverage) highlighting robust composition regions that satisfy a 120 MPa UTS target.*
+
+---
+
 ## Real-World Motivation
 
 This work originated in a flat-rolled aluminum manufacturing environment facing recurring quality issues and external customer claims.
@@ -37,17 +55,6 @@ The objective of this portfolio is therefore:
 
 ---
 
-## What This Portfolio Demonstrates
-
-- Designing **reproducible SQL-based semantic layers** for industrial analytics
-- Treating data modeling as an analytical discipline
-- Evaluating predictive signal **before increasing model complexity**
-- Quantifying uncertainty and tail risk
-- Translating models into **engineering decision tools**
-- Prioritizing **interpretability, robustness, and decision value** over metric optimization
-
----
-
 ## Portfolio Roadmap
 
 Each study case answers a specific question raised by the previous one.
@@ -62,14 +69,16 @@ Each study case answers a specific question raised by the previous one.
 
 The cases are intended to be read **in order**, but each one is self-contained.
 
----
+--
 
-## Technologies & Stack
+## What This Portfolio Demonstrates
 
-- **PostgreSQL** — data modeling and semantic layer  
-- **SQL** — staging, cleaning, analytics-ready views  
-- **Python** — analysis, modeling, uncertainty quantification  
-- **Git** — versioned, reproducible workflows  
+- Designing **reproducible SQL-based semantic layers** for industrial analytics
+- Treating data modeling as an analytical discipline
+- Evaluating predictive signal **before increasing model complexity**
+- Quantifying uncertainty and tail risk
+- Translating models into **engineering decision tools**
+- Prioritizing **interpretability, robustness, and decision value** over metric optimization
 
 ---
 
@@ -86,6 +95,15 @@ Engineering decisions require calibrated uncertainty, not just point predictions
 
 **Engineering value over peak performance**  
 Models are evaluated by robustness, interpretability, and decision usefulness, not by chasing metric performance.
+
+---
+
+## Technologies & Stack
+
+- **PostgreSQL** — data modeling and semantic layer  
+- **SQL** — staging, cleaning, analytics-ready views  
+- **Python** — analysis, modeling, uncertainty quantification  
+- **Git** — versioned, reproducible workflows  
 
 ---
 
