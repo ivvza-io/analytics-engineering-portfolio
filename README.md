@@ -48,6 +48,24 @@ The objective of this portfolio is therefore:
 
 ---
 
+## Key Outcome
+
+The final outcome of this work is a set of **uncertainty-aware chemistry design maps**
+that allow engineers to:
+
+- infer feasible chemical compositions from a target UTS,
+- identify robust regions that satisfy mechanical requirements under uncertainty,
+- and make conservative release or design decisions without physical trial campaigns.
+
+These tools were used in practice to define internal chemistry standards,
+resulting in a measurable reduction in external quality claims.
+
+![Conservative chemistry design map — AA3105](assets/sc5_design_map.png)
+
+*Example of a conservative chemistry design map (lower bound, 90% coverage) highlighting robust composition regions that satisfy a 120 MPa UTS target.*
+
+---
+
 ## Portfolio Roadmap
 
 Each study case answers a specific question raised by the previous one.
