@@ -32,6 +32,17 @@ resulting in a measurable reduction in external quality claims.
 
 ---
 
+## Start Here
+
+If you want a fast overview:
+
+- **SC5 — Design maps (final outcome):** uncertainty-aware chemistry maps used for conservative engineering decisions  
+- **SC1 — Data foundation:** how the reproducible SQL semantic layer was designed  
+- **SC2 — Baseline modeling:** establishing chemistry-only predictive signal and uncertainty
+
+---
+
+
 ## Real-World Motivation
 
 This work originated in a flat-rolled aluminum manufacturing environment facing recurring quality issues and external customer claims.
@@ -69,7 +80,7 @@ Each study case answers a specific question raised by the previous one.
 
 The cases are intended to be read **in order**, but each one is self-contained.
 
---
+---
 
 ## What This Portfolio Demonstrates
 
@@ -134,5 +145,5 @@ It is a demonstration of how analytics can:
 
 ## Status
 
-> This repository is under active development.  
-> Study cases will be added and refined following the roadmap above.
+> This repository is under **active refinement**.  
+> Study cases SC1–SC5 are complete and may receive iterative polish, documentation improvements, and clarifications as the portfolio evolves.
