@@ -109,6 +109,15 @@ Models are evaluated by robustness, interpretability, and decision usefulness, n
 
 ---
 
+## Additional Context
+
+For readers interested in the analytical rationale, design decisions, and trade-offs behind each study case, an extended document is available:
+
+**Extended README — Analytical Rationale, Design Decisions, and Modeling Philosophy** 
+- [`README_EXTENDED.md`](docs/README_EXTENDED.md)
+
+---
+
 ## Technologies & Stack
 
 - **PostgreSQL** — data modeling and semantic layer  
