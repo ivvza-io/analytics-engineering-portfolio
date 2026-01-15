@@ -1,158 +1,185 @@
-# SQL & Analytics Engineering Portfolio  
-**From Reproducible Data Models to Engineering Design Tools**
+# Analytics Engineering Portfolio  
+**From Industrial Data to Decision-Ready Standards Under Uncertainty**
 
 ---
 
-## Overview
+## Executive Thesis
 
-This repository presents a curated portfolio of analytics and modeling study cases built on real industrial metallurgy data.
+This portfolio documents how **industrial manufacturing data** can be transformed into:
 
-The focus is not on isolated machine learning experiments, but on **end-to-end analytical reasoning**:
-from reproducible data modeling, through conservative predictive analysis, to **engineering-ready decision tools**.
+- reproducible analytics foundations,
+- conservative and interpretable analytical models,
+- and **decision-ready engineering tools**,
 
-All study cases originate from a real manufacturing problem and are organized as a **coherent analytical roadmap**, not as standalone demos.
+used to define **internal standards** and reduce operational risk **under uncertainty**.
 
----
+The work reflects system-level thinking at the intersection of **analytics engineering**, **applied data science**, and **industrial decision support**.
 
-## Key Outcome
+![Robust chemistry design map illustrating conservative decision regions](assets/sc5_design_map.png)
 
-The final outcome of this work is a set of **uncertainty-aware chemistry design maps**
-that allow engineers to:
-
-- infer feasible chemical compositions from a target UTS,
-- identify robust regions that satisfy mechanical requirements under uncertainty,
-- and make conservative release or design decisions without physical trial campaigns.
-
-These tools were used in practice to define internal chemistry standards,
-resulting in a measurable reduction in external quality claims.
-
-![Conservative chemistry design map — AA3105](assets/sc5_design_map.png)
-
-*Example of a conservative chemistry design map (lower bound, 90% coverage) highlighting robust composition regions that satisfy a 120 MPa UTS target.*
+*Example of a human-readable, uncertainty-aware chemistry design map.
+The surface represents a conservative estimate of mechanical performance, while the highlighted target line indicates compositions that meet the design criterion with an explicit safety margin. This map illustrates how analytical models are translated into practical decision tools rather than point predictions.*
 
 ---
 
-## Start Here
+## Industrial Problem Context
 
-If you want a fast overview:
+This portfolio originated from a real quality problem in a flat-rolled aluminum operation.
 
-- **SC5 — Design maps (final outcome):** uncertainty-aware chemistry maps used for conservative engineering decisions  
-- **SC1 — Data foundation:** how the reproducible SQL semantic layer was designed  
-- **SC2 — Baseline modeling:** establishing chemistry-only predictive signal and uncertainty
-
----
-
-
-## Real-World Motivation
-
-This work originated in a flat-rolled aluminum manufacturing environment facing recurring quality issues and external customer claims.
-
-Despite meeting industry standards (AA specifications), materials exhibited:
-- unstable mechanical performance,
-- excessive variability,
-- downstream processing issues,
-- and inconsistent customer outcomes.
+Despite operating within AA specification limits, the organization experienced recurring quality issues and customer claims driven by **mechanical performance variability materials** perceived as too hard, too soft, or unstable in downstream forming.
 
 Root cause analysis revealed a structural gap:
-- no internal chemistry design standards,
-- no internal mechanical targets,
-- and decisions driven solely by specification compliance rather than performance robustness.
 
-Physical trial campaigns to define better standards were impractical due to cost and operational risk.
+- absence of internal chemistry standards,
+- absence of internal mechanical performance targets,
+- release decisions driven by compliance rather than design intent.
 
-The objective of this portfolio is therefore:
-
-> **To show how industrial data can be used to define internal design ranges and decision tools that reduce risk, without relying on extensive physical experimentation.**
-
----
-
-## Portfolio Roadmap
-
-Each study case answers a specific question raised by the previous one.
-
-| Study Case | Focus |
-|-----------|-------|
-| **SC1** | From spreadsheets to a reproducible SQL analytics foundation |
-| **SC2** | Chemistry-only baseline predictive modeling |
-| **SC3** | Generalization across alloy systems |
-| **SC4** | Screening which additional variables are worth measuring |
-| **SC5** | Uncertainty-aware chemistry design maps for engineering decisions |
-
-The cases are intended to be read **in order**, but each one is self-contained.
+Physical trial campaigns to define internal standards were costly and operationally constrained.  
+This portfolio explores whether **data-driven modeling** can act as a complementary design tool to define **conservative, defensible internal standards**.
 
 ---
 
 ## What This Portfolio Demonstrates
 
-- Designing **reproducible SQL-based semantic layers** for industrial analytics
-- Treating data modeling as an analytical discipline
-- Evaluating predictive signal **before increasing model complexity**
-- Quantifying uncertainty and tail risk
-- Translating models into **engineering decision tools**
-- Prioritizing **interpretability, robustness, and decision value** over metric optimization
+Rather than isolated projects, this portfolio demonstrates the ability to design and connect:
+
+- **Reproducible data foundations**  
+  Stable analytical semantics, explicit grain, and traceability.
+
+- **Disciplined modeling pipelines**  
+  Signal validation, leakage-aware evaluation, and conservative assumptions.
+
+- **Uncertainty-aware decision tools**  
+  Translating models into artifacts engineers can actually use.
+
+The emphasis is not on algorithmic novelty, but on **trust, robustness, and decision value**, supporting standards definition, **risk reduction**, and **process stability**.
 
 ---
 
-## Guiding Principles
+## Portfolio Structure (System View)
 
-**Data before models**  
-Trustworthy analysis starts with a clearly defined data grain and stable semantics.
+Each study case answers a question raised by the previous one. Together, they form a coherent analytical system:
 
-**Signal before complexity**  
-Simple models are explored first to understand predictive limits and uncertainty sources.
+### SC01 — Reproducible Analytics Foundation  
+**From Excel-based analysis to a SQL semantic layer**
 
-**Uncertainty is part of the answer**  
-Engineering decisions require calibrated uncertainty, not just point predictions.
+Designs a reproducible analytics foundation by replacing spreadsheet workflows with a SQL-based semantic layer that enforces grain, semantics, and traceability.   
+[View Study Case →](https://github.com/ivvza-io/sc01-from-excel-to-sql-analytics)
 
-**Engineering value over peak performance**  
-Models are evaluated by robustness, interpretability, and decision usefulness, not by chasing metric performance.
+→ Establishes the conditions required for trustworthy downstream analysis.
 
 ---
 
-## Additional Context
+### SC02 — Chemistry-Only Predictive Signal  
+**Can chemistry alone support conservative UTS standards?**
 
-For readers interested in the analytical rationale, design decisions, and trade-offs behind each study case, an extended document is available:
+Validates that chemistry contains meaningful, calibratable signal for UTS using simple, interpretable models and group-aware, out-of-fold evaluation.   
+[View Study Case →](https://github.com/ivvza-io/sc02-chemistry-only-mechanical-properties)
 
-**Extended README — Analytical Rationale, Design Decisions, and Modeling Philosophy** 
-- [`README_EXTENDED.md`](docs/README_EXTENDED.md)
+→ Demonstrates that internal standards can be grounded in data.
 
 ---
 
-## Technologies & Stack
 
-- **PostgreSQL** — data modeling and semantic layer  
-- **SQL** — staging, cleaning, analytics-ready views  
-- **Python** — analysis, modeling, uncertainty quantification  
-- **Git** — versioned, reproducible workflows  
+### SC03 — Generalization Across Alloy Systems  
+**Does the framework generalize beyond a single system?**
+
+Applies the same modeling pipeline across alloy systems to test generalization in principle, revealing system-dependent functional behavior.   
+[View Study Case →](https://github.com/ivvza-io/sc03-chemistry-generalization-across-systems)
+
+→ Establishes modeling approaches as transferable frameworks, not fixed formulas.
+
+---
+
+### SC04 — Variable Influence Screening  
+**Does added complexity actually reduce uncertainty?**
+
+Evaluates whether commonly measured, metallurgically motivated process variables provide incremental predictive value beyond chemistry.  
+[View Study Case →](https://github.com/ivvza-io/sc04-variable-influence-screening)
+
+→ Demonstrates disciplined restraint: complexity must earn its place.
+
+---
+
+### SC05 — Uncertainty-Aware Design Maps  
+**Turning models into decision-ready engineering tools**
+
+Transforms validated chemistry-only models into conservative design maps with explicit uncertainty margins and operational guardrails.   
+[View Study Case →](https://github.com/ivvza-io/sc05-uncertainty-aware-design-maps)
+
+→ Translates analytics into human-readable, uncertainty-aware standards and decision-support tools.
+
+---
+
+## How to Navigate the Portfolio
+
+- **README (per Study Case)**  
+  Executive-level, decision-oriented summaries with minimal but sufficient evidence.
+
+- **Technical Notes (per Study Case)**  
+  Detailed methodology, diagnostics, extended tables, and audit-level discussion.
+
+- **Notebooks**  
+  Full analytical evidence: code, experiments, and intermediate outputs.
+
+- **README_EXTENDED — Analytical System and Design Philosophy**  
+  Documents portfolio-wide analytical principles, validation conventions, and design rules.  
+  [Read the extended documentation →](docs/README_EXTENDED.md)
+
+> Short on time? Jump directly to [**SC05**](https://github.com/ivvza-io/sc05-uncertainty-aware-design-maps) to see the final decision-ready design tools.  
+
+---
+
+## Design Philosophy (Summary)
+
+Across all study cases, the portfolio follows consistent principles:
+
+- **Reproducibility before modeling**  
+- **Signal before sophistication**  
+- **Uncertainty as a first-class output**  
+- **Engineering value over metric optimization**
+
+These principles are documented in detail in the portfolio’s extended documentation.
+
+---
+
+## What This Portfolio Is — and Is Not
+
+### This portfolio *is*:
+- Industrially grounded and decision-oriented
+- Conservative by design
+- Focused on trust, robustness, and interpretability
+- Representative of senior-level analytical ownership
+
+### This portfolio is *not*:
+- A benchmark-chasing exercise
+- A collection of exotic algorithms
+- An academic modeling showcase
+- Metric optimization without operational context
 
 ---
 
 ## Intended Audience
 
-This portfolio is relevant for:
-- Data scientists working with **industrial or physical systems**
-- Analytics engineers bridging SQL, modeling, and decision-making
-- Process, product, or materials engineers interested in analytics
-- Hiring managers evaluating **end-to-end analytical maturity**
+This work is most relevant for:
+
+- Hiring managers evaluating **Senior Data Scientist / Analytics Engineer** profiles
+- Industrial analytics and data platform teams
+- Organizations operating under real variability, constraints, and risk
 
 ---
 
-## What This Portfolio Is Not
+## Closing Statement
 
-This is intentionally **not**:
-- a benchmark-focused ML portfolio,
-- a collection of advanced algorithms,
-- or a demonstration of model complexity for its own sake.
+> **Complexity is not the goal.  
+> Insight, trust, and decision value are.**
 
-It is a demonstration of how analytics can:
-- build trust in data,
-- define predictive limits,
-- justify complexity incrementally,
-- and support real engineering decisions.
+This portfolio demonstrates how disciplined analytics engineering and uncertainty-aware modeling can be used to define **defensible internal standards** and support real engineering decisions.
 
 ---
 
-## Status
+### Next Steps
 
-> This repository is under **active refinement**.  
-> Study cases SC1–SC5 are complete and may receive iterative polish, documentation improvements, and clarifications as the portfolio evolves.
+Each study case can be explored independently, but the full value emerges when read as a system, from data foundations to decision tools.
+
+Start with [**SC01**](https://github.com/ivvza-io/sc01-from-excel-to-sql-analytics.git) for context, or jump directly to [**SC05**](https://github.com/ivvza-io/sc05-uncertainty-aware-design-maps) to see the end-state.
