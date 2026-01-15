@@ -126,7 +126,7 @@ Transforms validated chemistry-only models into conservative design maps with ex
   Documents portfolio-wide analytical principles, validation conventions, and design rules.  
   [Read the extended documentation →](docs/README_EXTENDED.md)
 
-> Short on time? Jump directly to [**SC05**](https://github.com/ivvza-io/sc05-uncertainty-aware-design-maps) to see the final decision-ready design tools.  
+> **Short on time?** Jump directly to [**SC05**](https://github.com/ivvza-io/sc05-uncertainty-aware-design-maps) to see the final decision-ready design tools.  
 
 ---
 
