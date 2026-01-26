@@ -24,17 +24,19 @@ In short: **how and why decisions were made**, not just what was built.
 
 This work originated from a real quality problem in a flat-rolled aluminum operation.
 
-Despite operating within AA specification limits, the organization experienced recurring quality issues and customer claims related to mechanical performance variability materials, perceived as too hard, too soft, or unstable in downstream forming.
+Despite operating within Aluminum Association (AA) specification limits, the organization experienced recurring quality issues and customer claims related to mechanical performance variability—materials perceived as too hard, too soft, or unstable in downstream forming.
 
 Root cause analysis revealed a structural gap:
-- no internal chemistry standards,
-- no internal mechanical performance targets,
-- and release decisions driven by compliance rather than design intent.
+- No internal chemistry standards
+- No internal mechanical property targets  
+- Release decisions driven by compliance rather than design intent
 
-Physical trial campaigns to define internal standards were economically and operationally constrained. This portfolio explores whether data-driven modeling could serve as a complementary design tool to define conservative, defensible design ranges under uncertainty.
+**The core problem:** External specifications define **allowable ranges**, not **operational targets**. Without internal standards, the organization could not distinguish between chemistries that were merely acceptable versus chemistries that were operationally robust.
 
-**Note on public vs. internal outcomes:**
-Any operational impact referenced in this public portfolio is described at a qualitative level. Quantitative impact and proprietary implementation details remain internal.
+Physical trial campaigns to define internal standards were economically and operationally constrained. This portfolio explores whether **data-driven modeling** could serve as a complementary design tool to define conservative, defensible internal standards under uncertainty.
+
+**Note on public vs. internal outcomes:**  
+Operational impact is described qualitatively in this public portfolio. Quantitative metrics and proprietary implementation details remain internal.
 
 ---
 
@@ -43,6 +45,12 @@ Any operational impact referenced in this public portfolio is described at a qua
 > *How can industrial data be transformed into analytical models that engineers can trust and actually use to define design standards and reduce risk?*
 
 This portfolio treats data engineering, analytics, and modeling as a **single system**, not isolated steps.
+
+**The answer demonstrated here:**
+1. Build reproducible data foundations first (SC01)
+2. Validate signal exists before adding complexity (SC02-SC04)
+3. Make uncertainty explicit in decision tools (SC05)
+4. Enforce consistency through shared conventions (this document + toolkit)
 
 ---
 
@@ -215,19 +223,112 @@ Translates validated models into conservative design maps and robust decision re
 
 ---
 
-## 10. What This Portfolio Intentionally Avoids
+## 10. What This Portfolio Prioritizes
 
-This portfolio does **not** aim to:
-- chase state-of-the-art benchmarks,
-- maximize model complexity,
-- demonstrate exotic algorithms for their own sake,
-- optimize metrics without interpretability.
+This portfolio **prioritizes** trust, interpretability, and operational deployment over:
 
-These choices are deliberate.
+- **State-of-the-art benchmarks**  
+  Benchmarks are designed for different objectives (public datasets, standardized splits, metric optimization). Industrial decision support requires different trade-offs.
+
+- **Model complexity**  
+  Complex models reduce transparency and complicate maintenance. For engineering decision tools, interpretability is a requirement, not a nice-to-have.
+
+- **Exotic algorithms**  
+  Novel algorithms are valuable in research contexts, but production systems benefit from well-understood, robust approaches that engineers can trust.
+
+- **Metric optimization without context**  
+  Improving MAE by 0.5 MPa means nothing if it doesn't reduce tail risk or improve decision quality. Metrics must translate to engineering value.
+
+These are **intentional trade-offs** appropriate for industrial decision support systems where:
+- Decisions have real consequences (quality claims, production disruptions)
+- Stakeholders must understand and trust the tools
+- Models must remain maintainable over years, not months
 
 ---
 
-## 11. Final Notes
+## 11. Analytical Architecture and Reuse Strategy
+
+### 11.1 Portfolio Structure
+
+This portfolio is structured as a set of independent but methodologically aligned study cases.
+
+To keep notebooks focused on analysis, interpretation, and decisions — rather than repeated boilerplate — a **shared analytics toolkit** is used across study cases.
+
+## 11. Analytical Architecture and Reuse Strategy
+
+### 11.1 Portfolio Structure
+
+This portfolio is structured as a set of independent but methodologically aligned study cases.
+
+To keep notebooks focused on analysis, interpretation, and decisions — rather than repeated boilerplate — a **shared analytics toolkit** is used across study cases.
+
+### 11.2 The Portfolio Analytics Toolkit
+
+**Repository:** [`portfolio-analytics-toolkit`](https://github.com/ivvza-io/portfolio-analytics-toolkit)
+
+This toolkit:
+- encapsulates reusable analytical primitives (OOF generation, metrics, grids, uncertainty margins, plotting),
+- enforces consistent validation and evaluation patterns across study cases,
+- improves auditability by reducing copy-pasted logic,
+- and enables notebooks to focus on **what** was analyzed, not **how** boilerplate was implemented.
+
+The toolkit is intentionally:
+- **lightweight** — minimal dependencies, focused scope
+- **notebook-first** — designed for interactive analysis, not production deployment
+- **portfolio-scoped** — not a general-purpose library
+
+**What it is not:**
+- Not a general-purpose ML library
+- Not a deployment framework
+- Not meant for standalone use outside this portfolio
+
+### 11.3 Dataset Loading Convention
+
+Public datasets follow a standardized layout:
+```
+data/public/
+  <dataset_id>/
+    dataset.parquet  # or dataset.csv
+```
+
+Example: `data/public/sc02/dataset.parquet`
+
+This convention enables:
+- Notebooks to be executed from `notebooks/` without path resolution issues
+- Consistent data loading: `load_public_dataset("sc02")`
+- Clear separation between public (shareable) and internal (proprietary) data
+
+### 11.4 Study Case Independence
+
+Each study case:
+- defines its own execution environment (`requirements.txt`)
+- documents its own reproducibility instructions (`HOW_TO_RUN.md`)
+- consumes only the toolkit utilities required for that specific analysis
+
+This separation preserves:
+- **methodological consistency** at the portfolio level,
+- while keeping each study case **self-contained and reproducible**.
+
+### 11.5 Versioning and Reproducibility
+
+The toolkit uses **semantic versioning** aligned with study case releases.
+
+Each study case pins its toolkit version in `requirements.txt`:
+```txt
+portfolio-analytics-toolkit @ git+https://github.com/ivvza-io/portfolio-analytics-toolkit.git@v1.0.0
+```
+
+This ensures:
+- Running SC02 notebooks today uses the same toolkit version as when published
+- Toolkit updates don't break previously published study cases
+- Clear traceability between study cases and toolkit versions
+
+**Current mapping:**
+- `v1.0.0` — SC01-SC05 baseline release
+
+---
+
+## 12. Final Notes
 
 > **Complexity is not a goal. Insight, trust, and decision value are.**
 

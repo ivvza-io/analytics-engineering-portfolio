@@ -20,6 +20,9 @@ The work reflects system-level thinking at the intersection of **analytics engin
 *Example of a human-readable, uncertainty-aware chemistry design map.
 The surface represents a conservative estimate of mechanical performance, while the highlighted target line indicates compositions that meet the design criterion with an explicit safety margin. This map illustrates how analytical models are translated into practical decision tools rather than point predictions.*
 
+>The work reflects system-level thinking at the intersection of **analytics engineering**, **applied data science**, and **industrial decision support**.
+> In comparable industrial operations, this approach could deliver $250K-$800K annually through quality claim reduction, trial optimization, and faster standardization. Specific operational results remain proprietary.
+
 ---
 
 ## Industrial Problem Context
@@ -126,20 +129,30 @@ Transforms validated chemistry-only models into conservative design maps with ex
   Documents portfolio-wide analytical principles, validation conventions, and design rules.  
   [Read the extended documentation →](docs/README_EXTENDED.md)
 
-> **Short on time?** Jump directly to [**SC05**](https://github.com/ivvza-io/sc05-uncertainty-aware-design-maps) to see the final decision-ready design tools.  
+- **[Analytics Toolkit](https://github.com/ivvza-io/portfolio-analytics-toolkit)** *(separate repository)*  
+  Shared utilities used across notebooks to enforce consistent validation, metrics, and plotting patterns.
+
+## Quick Start for Reviewers
+
+> **Short on time?** Optimal reading paths:
+
+- **5 min:** This overview + [Design Philosophy](#design-philosophy-summary) below
+- **15 min:** Jump to [SC05](https://github.com/ivvza-io/sc05-uncertainty-aware-design-maps) — see final decision-ready design tools
+- **30 min:** Read [SC02](https://github.com/ivvza-io/sc02-chemistry-only-mechanical-properties) + [SC01](https://github.com/ivvza-io/sc01-from-excel-to-sql-analytics) — analytical foundation
+- **Full review:** [Portfolio Design Documentation](docs/README_EXTENDED.md) — methodology and conventions
 
 ---
 
-## Design Philosophy (Summary)
+## Design Philosophy
 
-Across all study cases, the portfolio follows consistent principles:
+This portfolio is built on four principles:
 
-- **Reproducibility before modeling**  
-- **Signal before sophistication**  
-- **Uncertainty as a first-class output**  
-- **Engineering value over metric optimization**
+1. **Reproducibility before modeling** — No analysis without stable data semantics and explicit grain
+2. **Signal before sophistication** — Validate signal exists before adding complexity
+3. **Uncertainty as a first-class output** — Point predictions are insufficient for engineering decisions
+4. **Engineering value over metric optimization** — Models exist to support decisions, not optimize leaderboards
 
-These principles are documented in detail in the portfolio’s extended documentation.
+> Detailed methodology and analytical conventions: [Portfolio Design Documentation](docs/README_EXTENDED.md)
 
 ---
 
