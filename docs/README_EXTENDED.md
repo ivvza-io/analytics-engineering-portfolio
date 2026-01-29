@@ -324,7 +324,11 @@ This ensures:
 - Clear traceability between study cases and toolkit versions
 
 **Current mapping:**
-- `v1.0.0` — SC01-SC05 baseline release
+- `v1.0.0` — SC02-SC05 baseline release (2026-01-29) ✅ Stable
+
+For detailed versioning strategy and release history, see:
+→ [VERSIONING.md](https://github.com/ivvza-io/portfolio-analytics-toolkit/blob/main/VERSIONING.md)
+→ [CHANGELOG.md](https://github.com/ivvza-io/portfolio-analytics-toolkit/blob/main/CHANGELOG.md)
 
 ---
 
